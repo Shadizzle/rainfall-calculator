@@ -6,11 +6,13 @@ Create a program that reads a list of numbers representing daily rainfall.  The 
 Return the average of the non-negative integers up to, and not including, the first -999.
 
 For example:
+```
 [1,1,1,1,1,1,1,1,1,-999] -> 1
 [1,2,3,4,5,-999] -> 3
 [1,-1,-999] -> 1
 [-999]  -> No result (Nothing)
 [1,-1,9,0,10,99,-999,0,1,...] -> 23.8
+```
 
 ## Requirements
 
