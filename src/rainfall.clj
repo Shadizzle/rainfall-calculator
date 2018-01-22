@@ -1,15 +1,18 @@
 (ns rainfall
   (:require [clojure.edn :as edn]))
 
+(defn average [coll]
+  (/ (reduce + coll) (count coll)))
+
 (defn normalize-rainfall [rainfall]
   (->> rainfall
-       (take-while #(not= % -999))
-       (filter #(not (neg? %)))))
+       (take-while (partial not= -999))
+       (filter (comp not neg?))))
 
 (defn rainfall-average [rainfall]
   (let [normalized (normalize-rainfall rainfall)]
     (if (seq normalized)
-      (float (/ (reduce + normalized) (count normalized)))
+      (-> normalized average float)
       :no-result)))
 
 (defn -main [& args]
