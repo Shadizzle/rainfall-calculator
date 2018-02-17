@@ -1,6 +1,8 @@
 (ns rainfall
   (:require [clojure.edn :as edn]))
 
+(defn returns [val & _] val)
+
 (defn average [coll]
   (/ (reduce + coll) (count coll)))
 
@@ -16,8 +18,10 @@
       :no-result)))
 
 (defn -main [& args]
-  (let [rainfall-lists    (map edn/read-string args)
-        rainfall-averages (map rainfall-average rainfall-lists)]
-    (doall (map #(println (str %1 " -> " %2))
-                rainfall-lists
-                rainfall-averages))))
+  (returns nil
+    (let [rainfall-lists    (map edn/read-string args)
+          rainfall-averages (map rainfall-average rainfall-lists)]
+      (doseq (map #(println (str %1 " -> " %2))
+                  rainfall-lists
+                  rainfall-averages)))))
+
